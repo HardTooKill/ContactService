@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contact List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div>
+        <h2>Implemented by JQuery</h2>
+        <table id="contactsTable" class="table">
+            <thead>
+                <tr>
+                    <td>Full Name</td>
+                    <td>Phone</td>
+                    <td>Email</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/contact';
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $("#contactsTable").append("<tr><td>" + item.FirstName + ' ' + item.LastName + "</td><td>"+item.Phone+"</td><td>"+item.Email+"</td></tr>");
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
